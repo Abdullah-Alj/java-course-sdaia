@@ -73,6 +73,17 @@
         </dependency>
 
 
+        <!--        For XML-->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+
+
+
+
 
     </dependencies>
     <properties>
@@ -80,6 +91,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <war.mvn.plugin.version>3.4.0</war.mvn.plugin.version>
     </properties>
+
+
 
 
 

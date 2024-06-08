@@ -1,9 +1,11 @@
 package org.example.modle;
 
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+@XmlRootElement
 public class Job {
 
 
