@@ -15,4 +15,14 @@ public class JobDto {
 
     public void addLink(String string, String self) {
     }
+
+    public void setDeptCode(String substring) {
+    }
+
+    public void setSeq(int i) {
+    }
+
+    public void setHireYear(int i) {
+
+    }
 }

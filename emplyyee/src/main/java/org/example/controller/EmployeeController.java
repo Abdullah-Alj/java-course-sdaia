@@ -42,6 +42,12 @@ public class EmployeeController {
                         .type(MediaType.APPLICATION_XML)
                         .build();
             }
+            if (headers.getAcceptableMediaTypes().contains(MediaType.valueOf("text/csv"))) {
+                return Response
+                        .ok(employee)
+                        .type("text/csv")
+                        .build();
+            }
             return Response.ok(employee, MediaType.APPLICATION_JSON).build();
             // return dao.selectAll();
         } catch (Exception e) {
@@ -50,6 +56,25 @@ public class EmployeeController {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response insertEmployee(Employee employees){
+        try {
+            dao.insertEmployee(employees);
+            NewCookie cookie = (new NewCookie.Builder("username").value("abdullah").build());
+            URI uri = uriInfo.getAbsolutePathBuilder().path(employees.getJob_id() + "").build();
+            return Response
+                    .created(uri)
+                    .cookie(cookie)
+                    .header("Created by", "abdullah")
+                    .build();
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_XML)
+
     public Response insertEmployeeFromForm(@BeanParam Employee employee) {
         try {
             dao.insertEmployee(employee);
@@ -123,18 +148,10 @@ public class EmployeeController {
 
     }
 
-//    @POST
-//    public Response insertEmployeeFromFrom(@BeanParam Employee employee) {
-//        try {
-//            dao.insertEmployee(employee);
-//            NewCookie cookie = (new NewCookie.Builder("username")).value("abdullah").build();
-//            URI uri = uriInfo.getAbsolutePathBuilder().path(employee.getJob_id()+ " ").build();
-//            return Response.created(uri).cookie(cookie).header("Created by", "Wael").build();
-//        }catch (Exception e){
-//            throw new RuntimeException(e);
-//        }
-//
-//    }
+    public JobController getJobController (){
+        return new JobController();
+    }
+
 
 }
 
